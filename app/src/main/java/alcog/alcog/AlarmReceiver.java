@@ -21,6 +21,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (intent.getAction().equals(ACTION_STOP)) {
+            stopRingTone(context);
             // stop the mediaplayer
 
             //Intent intent = new ----
@@ -53,6 +54,13 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
     }
 
 
+
+    private void stopRingTone(Context context) {
+
+        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        MediaPlayer mp = MediaPlayer.create(context, notification);
+        mp.stop();
+    }
 
 
 }
