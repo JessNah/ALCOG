@@ -9,14 +9,18 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import java.util.Calendar;
 import java.util.Scanner;
 
 
 public class Game extends ActionBarActivity {
 
     private Button nSubmitButton;
+    private TextView question;
+    private EditText answertext;
+    private int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,40 +28,42 @@ public class Game extends ActionBarActivity {
         setContentView(R.layout.activity_game);
     }
 
-    /*
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        int x = 0, y = 0, ans = 0, j = 0; // the two numbers we are adding together
+
+        int x = 6;
+        int y = 3;
+        int ans = 9; // the two numbers we are adding together
         // read in user input
         Scanner user_input = new Scanner( System.in );
 
         String an;
         int answer;
-        int userAnswer = 0, requirementAnswer = 4;
-        while(userAnswer < requirementAnswer){
-            x = (int)(Math.random()*9) + 1;
-            y = (int)(Math.random()*9) + 1;
-            ans = x + y;
-            an = Integer.toString(x) + " + " + Integer.toString(y) + " = ";
-            System.out.println(an);
 
-            an = user_input.next(); //Number pad entry
 
-            if (Integer.parseInt(an) != ans){
-                System.out.println("Wrong");
-                requirementAnswer += 1;
+            question.setText("6 + 3 = ?");
+
+            //System.out.println(an);
+
+            answertext = (EditText)findViewById(R.id.textAnswer);
+            String correction = Integer.toString(answer);
+
+            if(correction.equals((Integer.toString(ans)))){
+                flag = 1;
             }
-            userAnswer += 1;
-        }
-    }
 
-    */
+             //an = user_input.next(); //Number pad entry
+
+//            if (Integer.parseInt(an) != ans){
+//                System.out.println("Wrong");
+//                requirementAnswer += 1;
+//            }
+
 
     nSubmitButton = (Button)findViewById(R.id.submitButton);
 
     nSubmitButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(flag==1){
             offAlarmSound();
         }
     });
